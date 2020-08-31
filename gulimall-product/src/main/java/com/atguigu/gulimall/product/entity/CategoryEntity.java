@@ -2,6 +2,7 @@ package com.atguigu.gulimall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -39,9 +40,11 @@ public class CategoryEntity implements Serializable {
 	 * $column.comments
 	 */
 	private Integer catLevel;
+
 	/**
-	 * $column.comments
+	 * 1为不删除，0为删除
 	 */
+    @TableLogic(value = "1",delval ="0")
 	private Integer showStatus;
 	/**
 	 * $column.comments
