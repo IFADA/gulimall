@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.product.service.impl;
 
+import com.atguigu.gulimall.product.entity.AttrEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,5 +56,6 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
         }).collect(Collectors.toList());
         this.saveBatch(collect);
     }
+
 
 }

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement //开启事务
-@MapperScan("com.atguigu.gulimall.product.dao")
+@MapperScan("com.atguigu.gulimall.ware.dao")
 public class MyBatisConfig {
 
     //引入分页插件
