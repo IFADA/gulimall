@@ -1,8 +1,8 @@
 package com.atguigu.gulimall.product.service.impl;
 
 import com.atguigu.gulimall.product.VO.AttrGroupWithAttrsVo;
+import com.atguigu.gulimall.product.VO.SpuItemAttrGroupVo;
 import com.atguigu.gulimall.product.dao.AttrAttrgroupRelationDao;
-import com.atguigu.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.atguigu.gulimall.product.entity.AttrEntity;
 import com.atguigu.gulimall.product.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
@@ -83,6 +83,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         return collect;
 
 
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+        List<SpuItemAttrGroupVo> vos= baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
+        return null;
     }
 
 }

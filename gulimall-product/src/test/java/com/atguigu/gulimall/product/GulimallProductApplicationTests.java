@@ -1,7 +1,8 @@
 package com.atguigu.gulimall.product;
 
 
-
+import com.atguigu.gulimall.product.VO.SpuItemAttrGroupVo;
+import com.atguigu.gulimall.product.dao.AttrGroupDao;
 import com.atguigu.gulimall.product.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -14,31 +15,43 @@ import org.springframework.data.redis.core.ValueOperations;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
 class GulimallProductApplicationTests {
-   @Autowired
+    @Autowired
     CategoryService categoryService;
-   @Autowired
+    @Autowired
     StringRedisTemplate redisTemplate;
-   @Autowired
+    @Autowired
     RedissonClient redissonClient;
 
-   @Test
-   public void  testFindPath(){
+    @Test
+    public void testFindPath() {
 //       Long[] catelogPath = categoryService.findCatelogPath((long) 225);
 //       log.info("完成路径:{}", Arrays.asList(catelogPath));
-   }
-   @Test
-    public  void  testRedist(){
-       ValueOperations<String, String> ops = redisTemplate.opsForValue();
-          ops.set("hello","wold");
-       String hello = ops.get("hello");
-       System.out.println(hello);
-   }
+    }
+
     @Test
-    public void  testReddsion() {
+    public void testRedist() {
+        ValueOperations<String, String> ops = redisTemplate.opsForValue();
+        ops.set("hello", "wold");
+        String hello = ops.get("hello");
+        System.out.println(hello);
+    }
+
+    @Test
+    public void testReddsion() {
         System.out.println(redissonClient);
-   }
+    }
+
+  @Autowired
+    AttrGroupDao attrGroupDao;
+    @Test
+    public void test() {
+        List<SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId = attrGroupDao.getAttrGroupWithAttrsBySpuId(3L, 225L);
+        System.out.println(attrGroupWithAttrsBySpuId);
+
+    }
 }
