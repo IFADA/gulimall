@@ -2,17 +2,16 @@ package com.atguigu.gulimall.member.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 会员收藏的专题活动
  * 
- * @author feng
- * @email ${email}
- * @date 2020-08-22 16:21:23
+ * @author 夏沫止水
+ * @email HeJieLin@gulimall.com
+ * @date 2020-05-22 19:42:06
  */
 @Data
 @TableName("ums_member_collect_subject")
@@ -20,24 +19,24 @@ public class MemberCollectSubjectEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * $column.comments
+	 * id
 	 */
 	@TableId
 	private Long id;
 	/**
-	 * $column.comments
+	 * subject_id
 	 */
 	private Long subjectId;
 	/**
-	 * $column.comments
+	 * subject_name
 	 */
 	private String subjectName;
 	/**
-	 * $column.comments
+	 * subject_img
 	 */
 	private String subjectImg;
 	/**
-	 * $column.comments
+	 * 活动url
 	 */
 	private String subjectUrll;
 

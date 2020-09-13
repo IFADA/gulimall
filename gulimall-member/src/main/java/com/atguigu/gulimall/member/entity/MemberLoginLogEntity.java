@@ -2,17 +2,17 @@ package com.atguigu.gulimall.member.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 会员登录记录
  * 
- * @author feng
- * @email ${email}
- * @date 2020-08-22 16:21:23
+ * @author 夏沫止水
+ * @email HeJieLin@gulimall.com
+ * @date 2020-05-22 19:42:06
  */
 @Data
 @TableName("ums_member_login_log")
@@ -20,28 +20,28 @@ public class MemberLoginLogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * $column.comments
+	 * id
 	 */
 	@TableId
 	private Long id;
 	/**
-	 * $column.comments
+	 * member_id
 	 */
 	private Long memberId;
 	/**
-	 * $column.comments
+	 * 创建时间
 	 */
 	private Date createTime;
 	/**
-	 * $column.comments
+	 * ip
 	 */
 	private String ip;
 	/**
-	 * $column.comments
+	 * city
 	 */
 	private String city;
 	/**
-	 * $column.comments
+	 * 登录类型[1-web，2-app]
 	 */
 	private Integer loginType;
 

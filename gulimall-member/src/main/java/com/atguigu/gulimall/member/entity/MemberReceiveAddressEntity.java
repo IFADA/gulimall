@@ -2,17 +2,16 @@ package com.atguigu.gulimall.member.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 会员收货地址
  * 
- * @author feng
- * @email ${email}
- * @date 2020-08-22 16:21:23
+ * @author 夏沫止水
+ * @email HeJieLin@gulimall.com
+ * @date 2020-05-22 19:42:06
  */
 @Data
 @TableName("ums_member_receive_address")
@@ -20,48 +19,48 @@ public class MemberReceiveAddressEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * $column.comments
+	 * id
 	 */
 	@TableId
 	private Long id;
 	/**
-	 * $column.comments
+	 * member_id
 	 */
 	private Long memberId;
 	/**
-	 * $column.comments
+	 * 收货人姓名
 	 */
 	private String name;
 	/**
-	 * $column.comments
+	 * 电话
 	 */
 	private String phone;
 	/**
-	 * $column.comments
+	 * 邮政编码
 	 */
 	private String postCode;
 	/**
-	 * $column.comments
+	 * 省份/直辖市
 	 */
 	private String province;
 	/**
-	 * $column.comments
+	 * 城市
 	 */
 	private String city;
 	/**
-	 * $column.comments
+	 * 区
 	 */
 	private String region;
 	/**
-	 * $column.comments
+	 * 详细地址(街道)
 	 */
 	private String detailAddress;
 	/**
-	 * $column.comments
+	 * 省市区代码
 	 */
 	private String areacode;
 	/**
-	 * $column.comments
+	 * 是否默认
 	 */
 	private Integer defaultStatus;
 

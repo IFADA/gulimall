@@ -1,4 +1,4 @@
-package com.atguigu.gulimall.gulimallthirdparty;
+package com.atguigu.gulimall.gulimallthirdparty.controller;
 
 import com.aliyun.oss.OSS;
 

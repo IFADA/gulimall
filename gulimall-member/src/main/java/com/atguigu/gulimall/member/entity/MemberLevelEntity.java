@@ -2,18 +2,17 @@ package com.atguigu.gulimall.member.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.math.BigDecimal;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 会员等级
  * 
- * @author feng
- * @email ${email}
- * @date 2020-08-22 16:21:23
+ * @author 夏沫止水
+ * @email HeJieLin@gulimall.com
+ * @date 2020-05-22 19:42:06
  */
 @Data
 @TableName("ums_member_level")
@@ -21,44 +20,44 @@ public class MemberLevelEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * $column.comments
+	 * id
 	 */
 	@TableId
 	private Long id;
 	/**
-	 * $column.comments
+	 * 等级名称
 	 */
 	private String name;
 	/**
-	 * $column.comments
+	 * 等级需要的成长值
 	 */
 	private Integer growthPoint;
 	/**
-	 * $column.comments
+	 * 是否为默认等级[0->不是；1->是]
 	 */
 	private Integer defaultStatus;
 	/**
-	 * $column.comments
+	 * 免运费标准
 	 */
 	private BigDecimal freeFreightPoint;
 	/**
-	 * $column.comments
+	 * 每次评价获取的成长值
 	 */
 	private Integer commentGrowthPoint;
 	/**
-	 * $column.comments
+	 * 是否有免邮特权
 	 */
 	private Integer priviledgeFreeFreight;
 	/**
-	 * $column.comments
+	 * 是否有会员价格特权
 	 */
 	private Integer priviledgeMemberPrice;
 	/**
-	 * $column.comments
+	 * 是否有生日特权
 	 */
 	private Integer priviledgeBirthday;
 	/**
-	 * $column.comments
+	 * 备注
 	 */
 	private String note;
 
