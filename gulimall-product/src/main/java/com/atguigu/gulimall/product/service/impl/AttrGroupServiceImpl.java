@@ -88,7 +88,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     @Override
     public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
         List<SpuItemAttrGroupVo> vos= baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
-        return null;
+        return vos;
     }
 
 }

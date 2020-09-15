@@ -14,6 +14,7 @@
     </resultMap>
      <resultMap id="spuAttrGroup" type="com.atguigu.gulimall.product.VO.SpuItemAttrGroupVo">
          <result property="groupName" column="attr_group_name"></result>
+
          <collection property="attrs" ofType="com.atguigu.gulimall.product.VO.Attr">
              <result property="attrId" column="attr_id"></result>
              <result property="attrName" column="attr_name"></result>

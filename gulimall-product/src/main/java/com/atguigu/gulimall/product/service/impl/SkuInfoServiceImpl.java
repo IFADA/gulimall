@@ -125,10 +125,12 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         SkuItemVo skuItemVo = new SkuItemVo();
         CompletableFuture<SkuInfoEntity> inforFuture = CompletableFuture.supplyAsync(() -> {
             //1.获取基本信息
-            SkuInfoEntity info = getById(skuId);
+            SkuInfoEntity info = this.getById(skuId);
             skuItemVo.setInfo(info);
             return info;
         }, executor);
+
+
         CompletableFuture<Void> saleAttrFuture = inforFuture.thenAcceptAsync((res) -> {
             //3.获取spu的销售属性
             List<SkuItemSaleAttrVo> attrValueWithSkuIdVos = skuSaleAttrValueService.getSaleAttrsBySpuId(res.getSpuId());
@@ -155,11 +157,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         }, executor);
 
         //等待所有任务都完成
-        CompletableFuture.allOf(saleAttrFuture,descFuture,baseFuture,imageFuture).get();
+        CompletableFuture.allOf(saleAttrFuture, descFuture, baseFuture, imageFuture).get();
 
-          return skuItemVo;
-
-
+        return skuItemVo;
 
 
     }

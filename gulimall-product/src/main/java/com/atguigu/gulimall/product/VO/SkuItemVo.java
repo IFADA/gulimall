@@ -9,12 +9,7 @@ import lombok.ToString;
 
 import java.util.List;
 
-/**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-19 16:46
- **/
+
 
 
 @ToString
@@ -24,7 +19,7 @@ public class SkuItemVo {
     //1、sku基本信息的获取  pms_sku_info
     private SkuInfoEntity info;
 
-    private boolean hasStock = true;
+    private boolean hasStock = false;
 
     //2、sku的图片信息    pms_sku_images
     private List<SkuImagesEntity> images;
