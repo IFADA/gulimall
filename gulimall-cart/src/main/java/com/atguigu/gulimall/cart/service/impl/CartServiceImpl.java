@@ -16,6 +16,7 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -103,20 +104,20 @@ public class CartServiceImpl implements CartService {
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         if (userInfoTo.getUserId() != null) {
             //1登录
-            String   usrId=  CART_PREFIX + userInfoTo.getUserId();
+            String usrId = CART_PREFIX + userInfoTo.getUserId();
             String cartKey = CART_PREFIX + userInfoTo.getUserKey();
             //2.如果临时购物车的数据还没有合并
             List<CartItem> tempCartItems = getCartItem(cartKey);
-            if(tempCartItems !=null){
+            if (tempCartItems != null) {
                 for (CartItem item : tempCartItems) {
-                    addToCart(item.getSkuId(),item.getCount());
+                    addToCart(item.getSkuId(), item.getCount());
                 }
                 //清除零时购物车
                 clearCart(cartKey);
             }
             //3.获取登录后的购物车数据
-            List<CartItem> cartItems=getCartItem(usrId);
-          cart.setItems(cartItems);
+            List<CartItem> cartItems = getCartItem(usrId);
+            cart.setItems(cartItems);
 
         } else {
             //2没有登录
@@ -141,7 +142,7 @@ public class CartServiceImpl implements CartService {
         CartItem cartItem = getCartItem(skuId);
         cartItem.setCheck(checked == 1);
         String s = JSON.toJSONString(cartItem);
-        cartOps.put(skuId.toString(),s);
+        cartOps.put(skuId.toString(), s);
 
     }
 
@@ -154,13 +155,36 @@ public class CartServiceImpl implements CartService {
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
         //序列化存入redis中
         String redisValue = JSON.toJSONString(cartItem);
-        cartOps.put(skuId.toString(),redisValue);
+        cartOps.put(skuId.toString(), redisValue);
     }
 
     @Override
     public void deleteIdCartInfo(Integer skuId) {
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
         cartOps.delete(skuId.toString());
+    }
+
+    @Override
+    public List<CartItem> getUserCartItems() {
+        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
+        if (userInfoTo.getUserId() == null) {
+            return null;
+        } else {
+            String carKey = CART_PREFIX + userInfoTo.getUserId();
+            List<CartItem> cartItems = getCartItem(carKey);
+
+            assert cartItems != null;
+            List<CartItem> collect = cartItems.stream().filter(CartItem::getCheck).map(item -> {
+                //更新最新价格
+                R price = productFeginService.getPrice(item.getSkuId());
+                String data = (String) price.get("data");
+                item.setPrice(new BigDecimal(data));
+                return item;
+            }).collect(Collectors.toList());
+            return collect;
+        }
+
+
     }
 
     /**
@@ -181,16 +205,16 @@ public class CartServiceImpl implements CartService {
         return operations;
     }
 
-    private List<CartItem> getCartItem(String cartKey){
+    private List<CartItem> getCartItem(String cartKey) {
         BoundHashOperations<String, Object, Object> hashOps = redisTemplate.boundHashOps(cartKey);
         List<Object> values = hashOps.values();
-        if(values!=null&& values.size()>0){
+        if (values != null && values.size() > 0) {
             List<CartItem> collect = values.stream().map((obj) -> {
-                String str =(String)obj;
+                String str = (String) obj;
                 CartItem cartItem = JSON.parseObject(str, CartItem.class);
                 return cartItem;
             }).collect(Collectors.toList());
-         return collect;
+            return collect;
         }
         return null;
     }

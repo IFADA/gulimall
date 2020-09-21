@@ -26,4 +26,8 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemDao, OrderItemEnt
         return new PageUtils(page);
     }
 
+    public void  revieveMesage(){
+        System.out.println("接受到消息");
+    }
+
 }
